@@ -1,0 +1,37 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+//React.createElement =>gives React Element thats JS OBJECT => converted to HTML element (using root.render(heading))
+const heading = React.createElement("h1", { id: "heading" }, "Namaste React");
+
+//JSX - HTML LIKE OR XML LIKE SYNTAX (not exactly html jsx and react is different)
+// JSX is not html inside javascript
+// JSX(transpiled by parcel before it reaches the browser/JS engine) using PARCEL - using BABEL for transpilation (came as a package along with PARCEL that converts JSX into code that browser/JS engine understands )!
+// JSX =>  BABEL transplied/converted to React.createElement() =>gives React Element thats JS OBJECT => converted to HTML element (using root.render(JsxHeading))
+// React Element
+const JsxHeading = <h1 className="heading">Namste React using JSX</h1>;
+
+console.log(heading);
+console.log(JsxHeading);
+// both will console log same js object !
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(JsxHeading);
+
+/* 2 ways of creating React components
+-Class Based Components - old way
+-Functional Components - new way 
+*/
+
+
+const HeadingComponent1 = ()=>{
+    return <h1 className="head">Namste React 1</h1>
+}
+const HeadingComponent2 = ()=> (
+<h1 className="head">
+Namaste React 1
+</h1>)
+
+
+// both are same 
