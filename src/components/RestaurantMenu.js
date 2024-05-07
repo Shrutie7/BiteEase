@@ -106,8 +106,10 @@ const RestaurantMenu = () => {
 
           <div className="menu-con6 ">
             {Categories.map((category,index) => (
-              <RestaurantCategories key={category?.card?.card?.title} data ={category?.card?.card} showItems={index===showIndex ? true:false} setshowIndex={()=>{index===showIndex ? setshowIndex(null):setshowIndex(index)}}/>
-                
+              <>
+              {/* <RestaurantCategories key={category?.card?.card?.title} data ={category?.card?.card} showItems={index===showIndex ? true:false} setshowIndex={()=>{index===showIndex ? setshowIndex(null):setshowIndex(index)}}/> */}
+              <RestaurantCategories key={category?.card?.card?.title} data ={category?.card?.card} showItems={index===showIndex ? true:false} setshowIndex={()=>{index===showIndex ? setshowIndex(null):setshowIndex(index)}}  />
+              </>
               
             ))}
           </div>

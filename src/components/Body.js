@@ -63,26 +63,26 @@ const Body = () => {
   // fetch returns a promsie to resolve a promise use then,catch OR async-await
   const fetchData = async () => {
     const datafetch = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+"https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.96340&lng=77.58550&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
 
     const json = await datafetch.json();
 
     console.log(
-      json.data.cards[2].card.card["gridElements"]?.infoWithStyle.restaurants
+      json.data.cards[4].card.card["gridElements"]?.infoWithStyle.restaurants
     );
 
     let resmain =
-      json?.data?.cards[2]?.card?.card["gridElements"]?.infoWithStyle
+      json?.data?.cards[4]?.card?.card["gridElements"]?.infoWithStyle
         ?.restaurants;
 
-    let resminddata = json?.data?.cards[1]?.card?.card["imageGridCards"]?.info;
+    let resminddata = json?.data?.cards[0]?.card?.card["imageGridCards"]?.info;
 
-    let resofferdata =
-      json?.data?.cards[0]?.card?.card["gridElements"]?.infoWithStyle?.info;
-    console.log(resofferdata);
+    // let resofferdata =
+    //   json?.data?.cards[1]?.card?.card["gridElements"]?.infoWithStyle?.info;
+    console.log( json?.data?.cards[0]);
 
-    setbestoffersdata([...resofferdata]);
+    // setbestoffersdata([...resofferdata]);
     setonminddata([...resminddata]);
     setlistdata(resmain);
     setfilteredrest(resmain);
@@ -228,14 +228,12 @@ const Body = () => {
           className="flex  overflow-hidden scroll-smooth ml-5 mr-5 "
           ref={ref}
         >
-          {bestoffersdata?.map((offerd, ind) => (
+          {/* {bestoffersdata?.map((offerd, ind) => (
             <div className="flex ml-[40px] min-w-fit h-[300px] first:ml-0" ref={imageref}>
               <img src={CDN_URL3 + offerd?.imageId} />
-              {/* <img src={CDN_URL3 + offerd?.imageId} className="w-[1000px]"/> */}
-          
-              {/* <img src={CDN_URL3 + offerd?.imageId} /> */}
+           
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
 

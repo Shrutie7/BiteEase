@@ -9,7 +9,9 @@ import Error from "./components/Error";
 import userContext from "./utils/UserContext";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { Provider } from "react-redux";
-
+import HttpService from "./services/HttpService";
+import UserService from "./services/UserService";
+import StoreService from "./services/StoreService";
 import appStore from "./utils/appStore";
 import Cart from "./components/Cart";
 // import Grocery from "./components/Grocery";
@@ -18,6 +20,8 @@ import Cart from "./components/Cart";
 //lazy takes a callback function which takes import which takes path of compoennt now grocery will form another bundle other than the main bundle ...
 const Grocery = lazy(() => import("./components/Grocery"));
 const About = lazy(() => import("./components/About"));
+
+// const {history,store} = StoreService.setup(); 
 
 //enclose grocery compoenent inside suspense bcoz by the time grocery compoennts come on ui it takes about 12 ms say , then react suspends the rendering as it didnt find grocery compoennt coz it was loaded lazily or on demand hence react throws error put suspend
 //give a placeholder fallback to suspense which shows what will come on ui by the time grocery is actually loaded (in that 12 ms ...)
@@ -103,3 +107,8 @@ const appRouter = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(<RouterProvider router={appRouter} />);
+
+const renderApp = () => root.render(<RouterProvider router={appRouter} {...{store,history}}/>);
+
+// UserService.initKeycloak(renderApp);
+// HttpService.configure();
