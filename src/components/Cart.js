@@ -1,29 +1,45 @@
 import React from "react";
 
 import { useState } from "react";
-import { clearCart } from "../utils/CartSlice";
+import { clearCart,addItem,removeItem, removeItemByIndex } from "../utils/CartSlice";
 
 import { useDispatch, useSelector } from "react-redux";
+import { computeHeadingLevel } from "@testing-library/react";
 
 const Cart = () => {
   const dispatch = useDispatch()
   const cartItems = useSelector((store) => store.cart.items);
   console.log(cartItems);
-  let [count, setcount] = useState(1);
+  const [itemscart,setitemscart] = useState({});
 
-  const minushandler = () => {
-    if (count > 0) {
-      count = count - 1;
-      setcount(count);
-    } else {
-      setcount(0);
-    }
-  };
+  
 
-  const plushandler = () => {
-    count = count + 1;
-    setcount(count);
-  };
+  const plushandler = (ind,d) =>{
+    console.log(d,ind);
+  const jsond = {...itemscart};
+  if(jsond[d.card.info.id]){
+    jsond[d.card.info.id] += 1;
+  }else{
+    jsond[d.card.info.id] = 1;
+  }
+ 
+  console.log(jsond);
+
+  setitemscart({...jsond})
+  }
+  const minushandler = (ind,d) =>{
+    console.log(d,ind);
+  const jsond = {...itemscart};
+  if(jsond[d.card.info.id]){
+    jsond[d.card.info.id] -= 1;
+  }else{
+    jsond[d.card.info.id] = 0;
+  }
+ 
+  console.log(jsond);
+
+  setitemscart({...jsond})
+  }
 
   const handleclearCart=()=>{
     dispatch(clearCart())
@@ -31,12 +47,12 @@ const Cart = () => {
 
   return (
     <div className="flex justify-center items-center">
-      <div className="text-center bg-slate-100 rounded-2xl h-[640px] w-[500px]  ">
+      <div className="text-center bg-slate-100 rounded-2xl h-full w-[500px]  ">
         <h1 className="text-2xl font-semibold border-b-2  border-gray-400">Cart</h1>
 
         <div className="pt-6">
         {cartItems?.length>0?
-          cartItems?.map((d) => (
+          cartItems?.map((d,ind) => (
             <div className="flex gap-7 mt-4 relative ">
               {d?.card?.info?.imageId ? (
                 <>
@@ -57,23 +73,26 @@ const Cart = () => {
               </div>
               <div className="absolute right-32 font-medium text-sm text-center leading-10">
                 ₹
-                {d?.card?.info?.price
-                  ? (d?.card?.info?.price / 100) * count
-                  : (d?.card?.info?.defaultPrice / 100) * count}
+                {/* {(d?.card?.info?.price && clickbuttoncount === ind)
+                  ? (d?.card?.info?.price / 100) * (cartarr.length+1)
+                  : (d?.card?.info?.price/100) * 1} */}
               </div>
               <div className="absolute right-4 h-7 mt-2 w-16 text-center leading-10 border border-solid border-black flex">
                 <div
                   className="w-7 h-4 text-center leading-5 cursor-pointer select-none"
-                  onClick={()=>{count>1 ? minushandler():handleclearCart()}}
+                  onClick={()=>{itemscart[d?.card?.info?.id]!==0 ? minushandler(ind,d):dispatch(removeItemByIndex(ind))}}
                 >
                   -
                 </div>
                 <div className="w-7 h-4 text-center leading-5 select-none">
-                  {count}
+                
+                {/* {console.log(cartItems?.indexOf(d) === ind,cartarr)} */}
+                  {/* {clickbuttoncount === ind ?cartarr.length+1:1} */}
+                  {itemscart[d?.card?.info?.id]?itemscart[d?.card?.info?.id]+1:1}
                 </div>
                 <div
                   className="w-7 h-4 text-center leading-5 cursor-pointer select-none"
-                  onClick={() => plushandler()}
+                  onClick={() => plushandler(ind,d)}
                 >
                   +
                 </div>

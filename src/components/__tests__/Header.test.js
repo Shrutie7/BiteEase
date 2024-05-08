@@ -1,11 +1,11 @@
-import { fireEvent, render,screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import Header from "../Header";
 import { Provider } from "react-redux";
 import appStore from "../../utils/appStore";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 
-it("should render header component with a login button", () => {
+it("should load header component with a login button", () => {
   render(
     <BrowserRouter>
       <Provider store={appStore}>
@@ -13,14 +13,12 @@ it("should render header component with a login button", () => {
       </Provider>
     </BrowserRouter>
   );
-//   if multiple login button on screen we want only button which has name as Login
- const loginbutton = screen.getByRole("button",{name:"Login"});
-
-//  const loginbutton = screen.getByText("Login");
-  expect(loginbutton).toBeInTheDocument();
-
+  // const loginButton = screen.getByRole("button");
+  // const loginButton = screen.getByText("Login")
+  const loginButton = screen.getByRole("button", { name: "Login" });
+  expect(loginButton).toBeInTheDocument();
 });
-it("should render header component with cart items 0", () => {
+it("should load header component with cart items as 0", () => {
   render(
     <BrowserRouter>
       <Provider store={appStore}>
@@ -29,15 +27,13 @@ it("should render header component with cart items 0", () => {
     </BrowserRouter>
   );
 
-//   const cartItems = screen.getByText("Cart - 0 items");
-// we can also pass in regex over here when passing text
-  const cartItems = screen.getByText(/Cart/);
-
-//  const loginbutton = screen.getByText("Login");
-  expect(cartItems).toBeInTheDocument();
-
+  //match exact string
+  // const cartitems = screen.getByText("Cart - 0 items");
+  //write regex instead no need to match exact string and check if cart items is there or not not matter 0/1/2
+  const cartitems = screen.getByText(/Cart/);
+  expect(cartitems).toBeInTheDocument();
 });
-it("should change Login button to logout on click", () => {
+it("should change login button to logout on click", () => {
   render(
     <BrowserRouter>
       <Provider store={appStore}>
@@ -45,13 +41,11 @@ it("should change Login button to logout on click", () => {
       </Provider>
     </BrowserRouter>
   );
+  const loginButton = screen.getByRole("button", { name: "Login" });
 
-const loginButton = screen.getByRole("button",{name:"Login"});
-//simulate the click event using fireEvent
-fireEvent.click(loginButton);
-const logoutbutton = screen.getByRole("button",{name:"Logout"})
+  fireEvent.click(loginButton);
 
-//  const loginbutton = screen.getByText("Login");
-  expect(logoutbutton).toBeInTheDocument();
+  const logoutButton = screen.getByRole("button",{name:"Logout"});
 
+  expect(logoutButton).toBeInTheDocument();
 });

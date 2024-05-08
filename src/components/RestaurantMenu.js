@@ -14,7 +14,7 @@ const RestaurantMenu = () => {
   const { resid } = useParams();
   console.log(resid);
   let resInfo = useRestaurantMenu(resid);
-
+console.log(resInfo);
 
   //initially we give null means no accordian is open if 0 is given then first accordian is open on initial render
 
@@ -30,7 +30,7 @@ const RestaurantMenu = () => {
     totalRatingsString,
     sla,
     aggregatedDiscountInfoV2,
-  } = resInfo?.cards[0]?.card?.card?.info || {};
+  } = resInfo?.cards[2]?.card?.card?.info || {};
 
   const { itemCards } =
     resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
@@ -39,7 +39,7 @@ const RestaurantMenu = () => {
   console.log(resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
 
   const Categories =
-    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (d) =>
         d?.card?.card?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
@@ -105,7 +105,7 @@ const RestaurantMenu = () => {
           {/* Categories Accordian */}
 
           <div className="menu-con6 ">
-            {Categories.map((category,index) => (
+            {Categories?.map((category,index) => (
               <>
               {/* <RestaurantCategories key={category?.card?.card?.title} data ={category?.card?.card} showItems={index===showIndex ? true:false} setshowIndex={()=>{index===showIndex ? setshowIndex(null):setshowIndex(index)}}/> */}
               <RestaurantCategories key={category?.card?.card?.title} data ={category?.card?.card} showItems={index===showIndex ? true:false} setshowIndex={()=>{index===showIndex ? setshowIndex(null):setshowIndex(index)}}  />

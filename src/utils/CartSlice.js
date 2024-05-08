@@ -19,6 +19,10 @@ const cartSlice = createSlice({
     removeItem: (state) => {
       state.items.pop();
     },
+    removeItemByIndex:(state,action)=>{
+
+      state.items.splice(action.payload,1)
+    },
     clearCart: (state) => {
       //make item length to 0 so cart is empty
 
@@ -56,5 +60,5 @@ const cartSlice = createSlice({
 });
 
 //we export both actions and reducer
-export const {addItem,removeItem,clearCart}=cartSlice.actions
+export const {addItem,removeItem,clearCart,removeItemByIndex}=cartSlice.actions
 export default cartSlice.reducer;
