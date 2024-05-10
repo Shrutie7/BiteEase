@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import ShimmerMenu from "./ShimmerMenu";
-import { CDN_URL1, MENU_API_URL } from "../utils/constant";
+import { CDN_URL1 } from "../utils/constant";
 import { useParams } from "react-router-dom";
-import arrowup from "../../logos/Arrow.png";
+// import arrowup from "../../logos/Arrow.png";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import { MENU_API_URL } from "../utils/constant";
 import RestaurantCategories from "./RestaurantCategories";
@@ -14,7 +14,7 @@ const RestaurantMenu = () => {
   const { resid } = useParams();
   console.log(resid);
   let resInfo = useRestaurantMenu(resid);
-console.log(resInfo);
+// console.log(resInfo);
 
   //initially we give null means no accordian is open if 0 is given then first accordian is open on initial render
 
@@ -49,7 +49,7 @@ console.log(resInfo);
   return (
     <>
       {resInfo !== null ? (
-        <div className="menu">
+        <div className="menu" >
           <div className="menu-con flex gap-x-96">
             <div className="menu-con1 ml-72 ">
               <div className="text-xl font-bold">{name}</div>

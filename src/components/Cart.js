@@ -91,10 +91,11 @@ total+=narr[index];
       <div className="text-center bg-slate-100 rounded-2xl h-full w-[500px]  ">
         <h1 className="text-2xl font-semibold border-b-2  border-gray-400">Cart</h1>
 
+{cartItems?.length>0?<button className="bg-black m-1 p-1 text-white rounded-xl" onClick={()=>handleclearCart()}>Clear Cart</button>:<></>}
         <div className="pt-6">
         {cartItems?.length>0?
           cartItems?.map((d,ind) => (
-            <div className="flex gap-7 mt-4 relative ">
+            <div className="flex gap-7 mt-4 relative " data-testid="cartitems">
               {d?.card?.info?.imageId ? (
                 <>
                   <img
@@ -142,7 +143,7 @@ total+=narr[index];
               </div>
               
             </div>
-          )):<div><img src={"https://hangry.io/img/cook.png"}/>
+          )):<div data-testid="cartitems"><img src={"https://hangry.io/img/cook.png"}/>
           <div className="font-semibold text-lg pt-5">Your cart is empty</div>
           <div className="font-light text-lg pt-3">You can go to home page to view more restaurants</div>
           </div>}

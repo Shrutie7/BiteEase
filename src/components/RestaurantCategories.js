@@ -39,7 +39,7 @@ const RestaurantCategories = ({ data, showItems, setshowIndex }) => {
         {showItems1 ? (
           <ItemList items={data?.itemCards} />
         ) : (
-          <div className="bg-gray-100 h-4"></div>
+          <div className="bg-gray-100 h-4" data-testid="foodItems"></div>
         )}
         {/* {showItems ? (
           <ItemList items={data?.itemCards} />

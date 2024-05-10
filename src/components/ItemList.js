@@ -13,7 +13,7 @@ const ItemList = ({ items }) => {
   return (
     <div>
       {items.map((item) => (
-        <div
+        <div data-testid="foodItems"
           className="menu-res-container flex rounded-xl pb-5 mt-8 border-b-2"
           key={item.card.info.id}
         >
@@ -32,6 +32,7 @@ const ItemList = ({ items }) => {
           <div className="menu-img ml-10">
             <div className="absolute">
               <button onClick={()=>handleAddItem(item)}
+              data-testid="addbtn"
               className="bg-white shadow-lg font-bold h-8  text-green-600 border border-solid border-gray-300 rounded-md px-5  ml-4">
                 ADD
               </button>

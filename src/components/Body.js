@@ -7,8 +7,8 @@ import { useState, useEffect, useContext, useRef } from "react";
 import userContext from "../utils/UserContext";
 import { CDN_URL2 } from "../utils/constant";
 import { CDN_URL3 } from "../utils/constant";
-import rightarrow from "../../icons/rightarrow.png";
-import leftarrow from "../../icons/leftarrow1.png";
+// import rightarrow from "../../icons/rightarrow.png";
+// import leftarrow from "../../icons/leftarrow1.png";
 
 const Body = () => {
   const [listdata, setlistdata] = useState([]);
@@ -52,7 +52,7 @@ const Body = () => {
     setstartingpoint1(distance);
     setendingpoint1(ref1.current.scrollWidth - ref1.current.scrollLeft);
   };
-  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
+const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
   //we can pass the state updating function also to value in provider in usercontext.providerand extract it here and everywhere in our app loggedinUser value will change with our input value in about page also where we r using consumer which is coming via lazy loading about us is coming from lazy loading
 
@@ -68,9 +68,9 @@ const Body = () => {
 
     const json = await datafetch.json();
 
-    console.log(
-      json.data.cards[4].card.card["gridElements"]?.infoWithStyle.restaurants
-    );
+    // console.log(
+    //   json.data.cards[4].card.card["gridElements"]?.infoWithStyle.restaurants
+    // );
 
     let resmain =
       json?.data?.cards[4]?.card?.card["gridElements"]?.infoWithStyle
@@ -80,7 +80,7 @@ const Body = () => {
 
     // let resofferdata =
     //   json?.data?.cards[1]?.card?.card["gridElements"]?.infoWithStyle?.info;
-    console.log( json?.data?.cards[0]);
+    // console.log( json?.data?.cards[0]);
 
     // setbestoffersdata([...resofferdata]);
     setonminddata([...resminddata]);
@@ -88,7 +88,7 @@ const Body = () => {
     setfilteredrest(resmain);
   };
   {
-    console.log(listdata);
+    // console.log(listdata);
   }
 
   // called after the compoenent renders
@@ -128,6 +128,7 @@ const Body = () => {
         <div className="m-4 p-4">
           <input
             type="text"
+            data-testid = "searchInput"
             placeholder="Search Restaurants"
             className="border border-solid border-black pl-1"
             value={ressearch}
@@ -159,7 +160,7 @@ const Body = () => {
             className="px-4 py-2 bg-gray-100 rounded-lg"
             onClick={() => {
               let FilteredList = listdata.filter(
-                (res) => res.info.avgRating > 4
+                (res) => res.info.avgRating > 4.2
               );
 
               setfilteredrest([...FilteredList]);
@@ -198,25 +199,25 @@ const Body = () => {
         <div className="flex gap-4 mr-10 mb-4">
         {startingpoint > 0 ? (
             <img
-              src={leftarrow}
+              // src={leftarrow}
               onClick={() => leftbtnhandler()}
               className="h-8 w-8 cursor-pointer"
             />
           ) : (
             <img
-              src={leftarrow}
+              // src={leftarrow}
               className="h-8 w-8 pointer-events-none opacity-40"
             />
           )}
           {startingpoint <= endingpoint ? (
             <img
-              src={rightarrow}
+              // src={rightarrow}
               onClick={() => rightbtnhandler()}
               className="h-8 w-8 cursor-pointer"
             />
           ) : (
             <img
-              src={rightarrow}
+              // src={rightarrow}
               className="h-8 w-8 pointer-events-none opacity-40"
             />
           )}
@@ -243,25 +244,25 @@ const Body = () => {
         <div className="flex gap-4 mr-10">
         {startingpoint1 > 0 ? (
             <img
-              src={leftarrow}
+              // src={leftarrow}
               onClick={() => leftbtnhandler11()}
               className="h-8 w-8 cursor-pointer"
             />
           ) : (
             <img
-              src={leftarrow}
+              // src={leftarrow}
               className="h-8 w-8 pointer-events-none opacity-40"
             />
           )}
           {startingpoint1 <= endingpoint1 ? (
             <img
-              src={rightarrow}
+              // src={rightarrow}
               onClick={() => rightbtnhandler11()}
               className="h-8 w-8 cursor-pointer"
             />
           ) : (
             <img
-              src={rightarrow}
+              // src={rightarrow}
               className="h-8 w-8 pointer-events-none opacity-40"
             />
           )}
@@ -294,7 +295,7 @@ const Body = () => {
             >
               {" "}
               {/* if the restaurant has avgRating>4.2 then it is promoted then add promoted label to it...  */}
-              {restaurant.info.avgRating > 4.2 ? (
+              {restaurant.info.avgRating > 4.0 ? (
                 <RestaurantCardPromoted resData={restaurant} />
               ) : (
                 <RestaurantCard resData={restaurant} />

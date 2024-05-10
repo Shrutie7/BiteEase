@@ -6,14 +6,14 @@ import UserContext from "../utils/UserContext";
 
 const RestaurantCard = (props) => {
   const { resData } = props;
-
+// console.log(resData);
   const {loggedInUser}=useContext(UserContext)
 
   const { name, avgRating, costForTwo, cuisines, sla, cloudinaryImageId } =
     resData?.info;
   return (
   
-    <div className="m-6 p-4 w-[300px] h-[320px] rounded-2xl transition ease-in-out  hover:scale-110 hover:duration-300 ... ">
+    <div data-testid="resCard" className="m-6 p-4 w-[300px] h-[320px] rounded-2xl transition ease-in-out  hover:scale-110 hover:duration-300 ... ">
       
       <img
         className="w-72  rounded-xl h-40  "
@@ -39,7 +39,7 @@ const RestaurantCard = (props) => {
           ? cuisines.slice(0, 4).toString() + "..."
           : cuisines.toString()}
       </div>
-<div>username:{loggedInUser}</div>
+{/* <div>username:{loggedInUser}</div> */}
     </div>
   );
 };
@@ -49,7 +49,7 @@ const RestaurantCard = (props) => {
 export const withPromotedLabel = (RestaurantCard)=>{
   return (props)=>{
     return (
-      <div className=" transition ease-in-out  hover:scale-110 hover:duration-300 ...">
+      <div data-testid="resCard" className=" transition ease-in-out  hover:scale-110 hover:duration-300 ...">
       <label className="absolute bg-black text-white m-2 p-2 rounded-lg ">promoted</label>
       <RestaurantCard {...props}/>
 
